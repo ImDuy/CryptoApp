@@ -1,0 +1,9 @@
+export const enum SCREEN {
+  HOME = 'HOME',
+  DETAIL = 'DETAIL',
+  MARKET = 'MARKET',
+  PORTFOLIO = 'PORTFOLIO',
+  PROFILE = 'PROFILE',
+  TRADE = 'TRADE',
+  BOTTOMTAB = 'BOTTOMTAB',
+}
