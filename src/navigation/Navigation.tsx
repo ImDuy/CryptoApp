@@ -1,5 +1,5 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import {SCREEN} from '../utils/Constants';
+import {COLOR, ICON, SCREEN} from '../utils/Constants';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Home from '../screens/home/Home';
@@ -7,6 +7,8 @@ import Portfolio from '../screens/portfolio/Portfolio';
 import Trade from '../screens/trade/Trade';
 import Market from '../screens/market/Market';
 import Profile from '../screens/profile/Profile';
+import {View} from 'react-native';
+import TabIcon from '../components/TabIcon';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,15 +27,61 @@ const TabNavigation = () => {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
+        tabBarShowLabel: false,
         tabBarStyle: {
-          height: 56 + insets.bottom,
+          height: 72 + insets.bottom,
+          backgroundColor: COLOR.darkGray,
         },
       }}>
-      <Tab.Screen name={SCREEN.HOME} component={Home} />
-      <Tab.Screen name={SCREEN.PORTFOLIO} component={Portfolio} />
-      <Tab.Screen name={SCREEN.TRADE} component={Trade} />
-      <Tab.Screen name={SCREEN.MARKET} component={Market} />
-      <Tab.Screen name={SCREEN.PROFILE} component={Profile} />
+      <Tab.Screen
+        name={SCREEN.HOME}
+        component={Home}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <TabIcon label="Home" icon={ICON.HOME} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={SCREEN.PORTFOLIO}
+        component={Portfolio}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <TabIcon
+              label="Portfolio"
+              icon={ICON.PORTFOLIO}
+              focused={focused}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={SCREEN.TRADE}
+        component={Trade}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <TabIcon label="Trade" icon={ICON.TRADE} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={SCREEN.MARKET}
+        component={Market}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <TabIcon label="Market" icon={ICON.MARKET} focused={focused} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={SCREEN.PROFILE}
+        component={Profile}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <TabIcon label="Profile" icon={ICON.PROFILE} focused={focused} />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };
