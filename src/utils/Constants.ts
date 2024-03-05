@@ -9,10 +9,13 @@ export const enum SCREEN {
 }
 
 export const COLOR = {
-  white: '#FFFFFF',
-  black: '#000000',
-  darkGray: '#1e1e1e',
-  gray: '#888888',
+  primary: '#000000',
+  secondary: '#1e1e1e',
+  btnBackground: '#FFFFFF',
+  btnLabel: '#000000',
+  title: '#FFFFFF',
+  subTitle: '#828282',
+  highlightText: '#53ff7a',
 };
 
 export const ICON = {
@@ -21,4 +24,15 @@ export const ICON = {
   PORTFOLIO: require('../../assets/icons/icon-portfolio.png'),
   PROFILE: require('../../assets/icons/icon-profile.png'),
   TRADE: require('../../assets/icons/icon-trade.png'),
+  TRANSFER: require('../../assets/icons/icon-transfer.png'),
+  WITHDRAW: require('../../assets/icons/icon-withdraw.png'),
+  UPWARD: require('../../assets/icons/icon-upward.png'),
+};
+
+export const FONTSIZE = {
+  xLarge: 28,
+  large: 20,
+  xMedium: 18,
+  medium: 16,
+  small: 11,
 };

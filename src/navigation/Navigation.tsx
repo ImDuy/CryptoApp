@@ -29,8 +29,10 @@ const TabNavigation = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          height: 72 + insets.bottom,
-          backgroundColor: COLOR.darkGray,
+          height: 70 + insets.bottom,
+          backgroundColor: COLOR.secondary,
+          paddingBottom: 0,
+          borderTopWidth: 0,
         },
       }}>
       <Tab.Screen
@@ -60,7 +62,7 @@ const TabNavigation = () => {
         component={Trade}
         options={{
           tabBarIcon: ({focused}) => (
-            <TabIcon label="Trade" icon={ICON.TRADE} focused={focused} />
+            <TabIcon label="Trade" icon={ICON.TRADE} isCircle={true} />
           ),
         }}
       />
