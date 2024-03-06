@@ -6,28 +6,33 @@ import CustomButton from '../../components/CustomButton';
 import {COLOR, ICON} from '../../utils/Constants';
 import CurrencyItem from '../../components/CurrencyItem';
 import {LineChart} from 'react-native-wagmi-charts';
+import {useGetMarketCoinQuery} from '../../api/GeckoAPI';
+import moment from 'moment';
+import {Coin} from '../../api/DataType';
 
 export default function Home() {
-  const data = [
-    {
-      timestamp: 1625945400000,
-      value: 33575.25,
-    },
-    {
-      timestamp: 1625946300000,
-      value: 33545.25,
-    },
-    {
-      timestamp: 1625947200000,
-      value: 33510.25,
-    },
-    {
-      timestamp: 1625948100000,
-      value: 33215.25,
-    },
-  ];
+  const {data, isLoading, error} = useGetMarketCoinQuery();
+  const startDateUnix = moment().subtract(7, 'day').unix();
 
-  const currencies = [1, 2, 3, 4];
+  const chartData = data
+    ? data[0].sparkline_in_7d.price.map((item, idx) => {
+        return {timestamp: startDateUnix + idx * 3600, value: item};
+      })
+    : [{timestamp: 0, value: 0}];
+
+  const renderCurrenciesItem = ({item}: {item: Coin}) => {
+    const percentChange = item.price_change_percentage_24h
+      ? item.price_change_percentage_24h.toFixed(2)
+      : 0;
+    return (
+      <CurrencyItem
+        name={item.name}
+        image={{uri: item.image}}
+        current_price={item.current_price}
+        percentChange={percentChange}
+      />
+    );
+  };
 
   return (
     <View style={styles.container}>
@@ -52,7 +57,7 @@ export default function Home() {
       </View>
 
       {/* LineChart */}
-      <LineChart.Provider data={data}>
+      <LineChart.Provider data={chartData}>
         <LineChart style={styles.mgTop40} height={200}>
           <LineChart.Path width={1} color={COLOR.highlightText} />
           <LineChart.CursorCrosshair color={COLOR.highlightText}>
@@ -64,8 +69,8 @@ export default function Home() {
       {/* Currencies */}
       <Text style={styles.cTitle}>Top CryptoCurrency</Text>
       <FlatList
-        data={currencies}
-        renderItem={({item}) => <CurrencyItem />}
+        data={data}
+        renderItem={renderCurrenciesItem}
         ItemSeparatorComponent={() => <View style={{height: 35}} />}
         style={styles.cList}
       />

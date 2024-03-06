@@ -16,6 +16,7 @@ export const COLOR = {
   title: '#FFFFFF',
   subTitle: '#828282',
   highlightText: '#53ff7a',
+  highlightNegativeText: 'red',
 };
 
 export const ICON = {

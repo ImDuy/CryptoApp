@@ -104,7 +104,6 @@ export const styles = StyleSheet.create({
   ciIcon: {
     width: 24,
     height: 24,
-    tintColor: COLOR.title,
   },
   ciName: {
     fontSize: FONTSIZE.medium,
@@ -113,6 +112,7 @@ export const styles = StyleSheet.create({
   ciPrice: {
     color: COLOR.title,
     fontWeight: '800',
+    textAlign: 'right',
   },
   ciPercentContainer: {
     flexDirection: 'row',
@@ -125,9 +125,16 @@ export const styles = StyleSheet.create({
     width: 10,
     height: 10,
   },
+  ciPercentNegativeIcon: {
+    tintColor: COLOR.highlightNegativeText,
+    transform: [{rotate: '90deg'}],
+  },
   ciPercentText: {
     color: COLOR.highlightText,
     fontSize: FONTSIZE.small,
     fontWeight: '700',
+  },
+  ciPercentNegativeText: {
+    color: COLOR.highlightNegativeText,
   },
 });
